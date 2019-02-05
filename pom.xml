@@ -4,23 +4,25 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.avianca.esb</groupId>
-  <artifactId>testavianca</artifactId>
+  <artifactId>resttoamq</artifactId>
   <version>1.0-SNAPSHOT</version>
 
-  <name>Avianca :: Integrations :: Spring-Boot :: Camel REST / AMQ</name>
-  <description>Spring Boot example running a Camel ${incomingTypeSupport.toUpperCase} route connecting to a ${outputTypeSupport.toUpperCase} Service</description>
+  <name>Fabric8 :: Quickstarts :: Spring-Boot :: Camel REST / SQL</name>
+  <description>Spring Boot example running a Camel REST route connecting to a SQL database</description>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <!-- Spring Boot default profile in order to use an embedded database -->
+    <run.profiles>dev</run.profiles>
 
     <!-- configure the versions you want to use here -->
-    <fabric8.version>3.0.11.fuse-000065-redhat-3</fabric8.version>
-    <spring-boot.version>1.5.4.RELEASE</spring-boot.version>
+    <fabric8.version>2.2.192</fabric8.version>
+    <spring-boot.version>1.4.3.RELEASE</spring-boot.version>
 
     <!-- Maven plugin versions -->
-    <fabric8.maven.plugin.version>3.5.33.fuse-000089-redhat-4</fabric8.maven.plugin.version>
+    <fabric8.maven.plugin.version>3.2.13</fabric8.maven.plugin.version>
     <maven-compiler-plugin.version>3.6.0</maven-compiler-plugin.version>
-    <maven-surefire-plugin.version>2.19.1</maven-surefire-plugin.version>
+    <maven-surefire-plugin.version>2.18.1</maven-surefire-plugin.version>
   </properties>
 
   <dependencyManagement>
@@ -42,19 +44,7 @@
     </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-activemq</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.fusesource</groupId>
-      <artifactId>camel-activemq</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.camel</groupId>
-      <artifactId>camel-swagger-java-starter</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.camel</groupId>
-      <artifactId>camel-servlet-starter</artifactId>
+      <artifactId>spring-boot-starter-web</artifactId>
     </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>
@@ -62,11 +52,63 @@
     </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-web</artifactId>
+      <artifactId>spring-boot-starter-jdbc</artifactId>
     </dependency>
-        <dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-activemq</artifactId>
+    </dependency>
+    <dependency>
+	  <groupId>org.apache.activemq</groupId>
+	  <artifactId>activemq-camel</artifactId>
+	</dependency>
+    <dependency>
+      <groupId>org.apache.camel</groupId>
+      <artifactId>camel-servlet-starter</artifactId>
+    </dependency>
+    <dependency>
       <groupId>org.apache.camel</groupId>
       <artifactId>camel-jackson-starter</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.camel</groupId>
+      <artifactId>camel-swagger-java-starter</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.camel</groupId>
+      <artifactId>camel-sql-starter</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>mysql</groupId>
+      <artifactId>mysql-connector-java</artifactId>
+      <scope>runtime</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.hsqldb</groupId>
+      <artifactId>hsqldb</artifactId>
+      <scope>runtime</scope>
+    </dependency>
+
+    <!-- testing -->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-test</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.jboss.arquillian.junit</groupId>
+      <artifactId>arquillian-junit-container</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>io.fabric8</groupId>
+      <artifactId>fabric8-arquillian</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.httpcomponents</groupId>
+      <artifactId>httpclient</artifactId>
+      <scope>test</scope>
     </dependency>
   </dependencies>
 
